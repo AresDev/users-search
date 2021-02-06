@@ -1,1 +1,10 @@
-/* You can add global styles to this file, and also import other style files */
+// Custom CSS imports
+@import "vars";
+@import "reset";
+@import "font-imports";
+@import "fonts";
+@import "breakpoints";
+@import "gradual-queries";
+@import "container";
+@import "grid";
+@import "layout";

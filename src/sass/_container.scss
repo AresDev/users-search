@@ -1,0 +1,40 @@
+/**
+  @container
+--------------------------------------------------------
+  The .container class is applied to restrict the
+  max-width of an element, usually a bit of content.
+------------------------------------------------------ */
+
+@mixin clearfix() {
+  &::before,
+  &::after {
+    content: " ";
+    display: table;
+  }
+  &::after {
+    clear: both;
+  }
+  // For IE 6/7 (trigger hasLayout)
+  zoom: 1;
+}
+
+$container-max-width: $breakpoint__xxl; // restricts width
+
+.clear {
+  clear: both;
+}
+
+.clearfix {
+  @include clearfix();
+}
+
+.container {
+  @include clearfix();
+  margin-left: auto;
+  margin-right: auto;
+  max-width: $container-max-width;
+  padding: 0 1.5 * $unit;
+  @include bp-at-least($breakpoint__md) {
+    padding: 0 3 * $unit;
+  }
+}

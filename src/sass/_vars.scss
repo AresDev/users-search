@@ -1,0 +1,215 @@
+/**
+
+  @variables
+---------------------------------------------------------
+  base/_vars.scss
+--------------------------------------------------------
+
+  Global variables are defined here.  Define your colors,
+  spacing and grid settings.
+
+-----------------------------------------------------  */
+
+/* @global spacing unit */
+
+@function get-rems($pixels) {
+  @return ($pixels / 16px) + rem;
+}
+
+$unit: 1rem;
+
+/* @colors
+--------------------------------------------------------
+
+  All color variables are defined here.
+
+  We use real color names here.  Although naming something
+  like 'brand' is in fact more generic and reusable, we've
+  found that you end up creating variables like $brand-2,
+  $brand-alt, $brand-complimentary etc.  While coding,
+  it's too easy to forget what those mean.
+
+  If the design changes drastically and the brand changes
+  from, let's say, blue to green, just do a global
+  find/replace - that's what text editors are for.
+
+------------------------------------------------------ */
+
+// Colors
+//
+$color__black: #000000;
+$color__grey: #818198;
+$color__grey--light: #f5f5f8;
+$color__grey--light_2: #eeeef3;
+$color__offwhite: #f4f4f4;
+$color__white: #fff;
+
+$color__red: #e94668;
+$color__red--light: #fce4e9;
+$color__green: #00d577;
+$color__navy: #212144;
+$color__orange: #eab448;
+
+$color__error__bg: #fce4e9;
+$color__error__fg: #e94668;
+$color__warning__bg: lighten(#f38a00, 45);
+$color__warning__fg: #f38a00;
+$color__info__bg: lighten(#0062a3, 60);
+$color__info__fg: #0062a3;
+$color__success__bg: #d6ffed;
+$color__success__fg: #00a35b;
+
+$color__border: #e3e3e8;
+$color__border__2: #a8a8b7;
+$color__avatar__border: #c4c4c4;
+$color__box__shadow: #e2e2e5;
+
+$color__profile__menu__bg: $color__grey--light_2;
+
+// table colors
+$color__table__item--hover: rgba($color__black, 0.02);
+$color__table__item--active: $color__grey--light_2;
+
+// input colors
+$color__input__text: $color__navy;
+$color__input__label: #a8a8b7;
+$color__input__border: #e3e3e8;
+$color__input__border--focused: $color__navy;
+$color__input__border--invalid: $color__red;
+
+// checkbox colors
+$color__checkbox__check--checked: $color__red;
+$color__checkbox__check--disabled: #bdbdbd;
+$color__checkbox__border--checked: $color__red;
+$color__checkbox__border--black: $color__navy;
+$color__checkbox__border--grey: #a8a8b7;
+$color__checkbox__border--disabled: #bdbdbd;
+$color__checkbox__label--black: $color__navy;
+$color__checkbox__label--grey: $color__grey;
+$color__checkbox__label--disabled: #bdbdbd;
+
+// radio button colors
+$color__radio__circle--checked: $color__red;
+$color__radio__circle--disabled: #bdbdbd;
+$color__radio__border--black: $color__navy;
+$color__radio__border--grey: $color__grey;
+$color__radio__border--disabled: #bdbdbd;
+$color__radio__label--black: $color__navy;
+$color__radio__label--grey: $color__grey;
+$color__radio__label--disabled: #bdbdbd;
+
+// dropdown colors
+$color__dropdown__text: $color__navy;
+$color__dropdown__label: #a8a8b7;
+$color__dropdown__border: #e3e3e8;
+$color__dropdown__border--focused: $color__navy;
+$color__dropdown__border--invalid: $color__red;
+$color__dropdown__item--color-active: $color__navy;
+$color__dropdown__item--color: $color__navy;
+$color__dropdown__item--hover: $color__grey--light_2;
+
+// signature colors
+$color__signature__label: #a8a8b7;
+$color__signature__border: #e3e3e8;
+$color__signature__border--focused: $color__navy;
+$color__signature__border--invalid: $color__red;
+
+// button colors
+$color__background__button--default: $color__white;
+$color__foreground__button--default: $color__grey;
+$color__border__button--default: $color__grey;
+
+$color__background__button--primary: $color__red;
+$color__foreground__button--primary: $color__white;
+
+$color__background__button--secondary: transparent;
+$color__foreground__button--secondary: $color__red;
+$color__border__button--secondary: $color__red;
+
+$color__background__button--terciary: $color__green;
+$color__foreground__button--terciary: $color__white;
+$color__border__button--terciary: $color__green;
+
+$color__background__button--disabled: #d1d1d1;
+
+// link colors
+$color__link: $color__red;
+
+// text colors
+$color__heading__text: $color__navy;
+$color__body__text--grey: $color__grey;
+$color__body__text--grey-light: #a8a8b7;
+$color__body__text--black: $color__navy;
+
+// default body font size
+$body__text__font--size: get-rems(14px);
+$sm__text__font--size: get-rems(12px);
+$xs__text__font--size: get-rems(10px);
+
+// layout variables
+$left__navbar--width: get-rems(64px);
+$top__navbar--height: get-rems(60px);
+
+$left__navbar-menu--width: get-rems(309px);
+
+/* @breakpoints
+---------------------------------------------------------
+
+  Define global breakpoints as xs, sm, md, lg, xl, xxl
+
+--------------------------------------------------------- */
+
+// Define breakpoints map to help with some other functions
+// and mixins.  Very fancy :)
+//
+$breakpoints: (
+  n: 0,
+  xs: 20,
+  sm: 34.375,
+  md: 48,
+  lg: 64,
+  xl: 78.5,
+  xxl: 100,
+);
+
+// Define individual variables
+//
+// Extra Small: Small mobile
+$breakpoint__xs: map-get($breakpoints, xs) + em;
+
+// Small: Larger mobile
+$breakpoint__sm: map-get($breakpoints, sm) + em;
+
+// Medium: Tablet
+$breakpoint__md: map-get($breakpoints, md) + em;
+
+// Large: Landscape tablet, beginning desk size
+$breakpoint__lg: map-get($breakpoints, lg) + em;
+
+// Extra Large: Large Desk size
+$breakpoint__xl: map-get($breakpoints, xl) + em;
+
+// Double Extra Large: Huge Desk size
+$breakpoint__xxl: map-get($breakpoints, xxl) + em;
+
+// Extra Small: Small mobile
+$breakpoint__xs__px: (map-get($breakpoints, xs) * 16) + px;
+
+// Small: Larger mobile
+$breakpoint__sm__px: (map-get($breakpoints, sm) * 16) + px;
+
+// Medium: Tablet
+$breakpoint__md__px: (map-get($breakpoints, md) * 16) + px;
+
+// Large: Landscape tablet, beginning desk size
+$breakpoint__lg__px: (map-get($breakpoints, lg) * 16) + px;
+
+// Extra Large: Large Desk size
+$breakpoint__xl__px: (map-get($breakpoints, xl) * 16) + px;
+
+// Double Extra Large: Huge Desk size
+$breakpoint__xxl__px: (map-get($breakpoints, xxl) * 16) + px;
+
+// viewer colors
+$viewer__width__lg: $breakpoint__lg__px;
+$viewer__width__md: 100%;
