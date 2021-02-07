@@ -1,1 +1,13 @@
 <p>search works!</p>
+<form [formGroup]="form" (ngSubmit)="search()">
+  <ares-input
+    type="text"
+    placeholder="Search GitHub"
+    formControlName="key"
+  ></ares-input>
+  <button type="submit" hidden #btn></button>
+</form>
+<button (clicked)="btn.click()">Search</button>
+<div>
+  <ares-users-list [users]="users"></ares-users-list>
+</div>
