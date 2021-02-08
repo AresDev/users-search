@@ -65,7 +65,6 @@ export class SearchComponent extends BaseComponent implements OnInit {
       .pipe(takeUntil(this.destroy$))
       .subscribe(
         (result: any) => {
-          console.log(result);
           const { items, total_count } = result;
           this.users = items;
           this.count = total_count;
