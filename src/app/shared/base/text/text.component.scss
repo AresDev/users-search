@@ -1,0 +1,91 @@
+@import "vars";
+@import "fonts";
+@import "breakpoints";
+
+.ares-text {
+  @extend %poppins-medium;
+
+  // display
+  &--block {
+    display: block;
+  }
+  &--inline {
+    display: inline-block;
+  }
+
+  // types
+  &--h1 {
+    font-size: get-rems(18px);
+  }
+
+  &--h2 {
+    font-size: get-rems(16px);
+  }
+
+  &--h3 {
+    font-size: get-rems(14px);
+  }
+
+  &--h5 {
+    font-size: get-rems(12px);
+  }
+
+  &--h6 {
+    font-size: get-rems(9px);
+  }
+
+  &--h7 {
+    font-size: get-rems(8px);
+  }
+
+  &--body {
+    font-size: get-rems(14px);
+  }
+
+  // colors
+  &--grey {
+    color: $color__body__text--grey;
+  }
+
+  &--grey-light {
+    color: $color__body__text--grey-light;
+  }
+
+  &--black {
+    color: $color__body__text--black;
+  }
+
+  &--red {
+    color: $color__red;
+  }
+
+  // alignment
+  &--left {
+    text-align: left;
+  }
+
+  &--right {
+    text-align: right;
+  }
+
+  &--justify {
+    text-align: justify;
+  }
+
+  &--center {
+    text-align: center;
+  }
+
+  //style
+  &--lowercase {
+    text-transform: lowercase;
+  }
+
+  &--uppercase {
+    text-transform: uppercase;
+  }
+
+  &--capitalize {
+    text-transform: capitalize;
+  }
+}

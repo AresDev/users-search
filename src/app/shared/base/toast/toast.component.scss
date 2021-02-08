@@ -1,0 +1,61 @@
+@import "vars";
+
+$icon_size: get-rems(40px);
+$padding_size: get-rems(10px);
+$margin_size: get-rems(10px);
+
+:host {
+  min-width: get-rems(371px);
+  min-height: get-rems(87px);
+  background-color: $color__white;
+  border-radius: 5px !important;
+  color: $color__grey;
+  box-shadow: 0 0 12px darken($color__grey--light, 5) !important;
+  &:hover {
+    box-shadow: 0 0 12px darken($color__grey--light, 10) !important;
+  }
+}
+
+.outer-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: $unit;
+}
+
+.toast-text-container {
+  align-items: flex-start;
+  padding-top: $padding_size;
+  display: flex;
+  flex-direction: column;
+  padding-left: $padding_size;
+  padding-right: $padding_size;
+  flex: 1;
+  max-width: get-rems(291px);
+  word-break: break-word;
+}
+
+.icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-width: 2px;
+  border-style: solid;
+  height: $icon_size;
+  width: $icon_size;
+  border-radius: 50%;
+  min-width: $icon_size;
+}
+
+.close {
+  font-weight: 300;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: $color__grey;
+  border: 1px solid $color__white;
+  height: $icon_size;
+  width: $icon_size;
+  border-radius: 50%;
+  min-width: $icon_size;
+}

@@ -10,3 +10,66 @@
 @import "layout";
 
 @import "~@syncfusion/ej2-angular-inputs/styles/material.css";
+
+abs-input.ng-invalid.ng-touched.ng-dirty {
+  div.abs-input-wrapper.e-float-input,
+  span.abs-input-wrapper {
+    border-bottom: 1px solid $color__input__border--invalid !important;
+  }
+
+  span.abs-input-wrapper.e-input-focus,
+  div.abs-input-wrapper.e-input-focus .e-float-line,
+  div.abs-input-wrapper input:focus + .e-float-line,
+  div.abs-input-wrapper.e-multi-line-input textarea:focus + .e-float-line {
+    &::after,
+    &::before {
+      background: $color__input__border--invalid !important;
+    }
+  }
+}
+
+.lds-ring {
+  display: inline-block;
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  margin: auto;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.lds-ring div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  margin: 8px;
+  border: 2px solid $color__red;
+  border-radius: 50%;
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: $color__red transparent transparent transparent;
+}
+
+.lds-ring div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+
+.lds-ring div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+
+.lds-ring div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+
+@keyframes lds-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

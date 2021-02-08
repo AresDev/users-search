@@ -1,1 +1,4 @@
-<p>user-item works!</p>
+<div>
+  <a [href]="user.html_url">{{ user.login }}</a>
+  <img class="profile" [src]="user.avatar_url" [alt]="user.login" />
+</div>

@@ -1,9 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
+import { ToastService } from '../core/toast.service';
 import { BaseComponent } from '../shared/base/base.component';
-import { User } from '../shared/feature/users-list/users-list.component';
+import { User } from '../shared/feature/user-item/user-item.component';
 import { SearchService } from './../core/search.service';
+
+export interface Params {
+  key: string;
+  page: number;
+  pageSize: number;
+}
 
 @Component({
   selector: 'ares-search',
@@ -16,14 +25,24 @@ export class SearchComponent extends BaseComponent implements OnInit {
   });
 
   users: User[];
+  key = '';
+  page = 1;
+  count = 0;
+  public pageSize = environment.settings.pageSize;
+  public loading$ = new Subject<boolean>();
 
-  constructor(private fb: FormBuilder, private searchService: SearchService) {
+  constructor(
+    private fb: FormBuilder,
+    private searchService: SearchService,
+    private toastService: ToastService
+  ) {
     super();
   }
 
   ngOnInit(): void {}
 
   search(): void {
+    this.page = 1;
     this.form.markAllAsTouched();
     this.form.markAsDirty();
 
@@ -34,21 +53,33 @@ export class SearchComponent extends BaseComponent implements OnInit {
 
     if (this.form.valid) {
       const values = this.form.value;
-
-      this.searchService
-        .searchUsers(values.key)
-        .pipe(takeUntil(this.destroy$))
-        .subscribe(
-          (result: any) => {
-            console.log(result);
-            this.users = result.items;
-          },
-          (error) => {
-            // this.toastService.showErrorToast({
-            //   message: `${error.description}`,
-            // });
-          }
-        );
+      this.key = values.key;
+      this.getUsers();
     }
+  }
+
+  getUsers(key?: string): void {
+    this.loading$.next(true);
+    this.searchService
+      .searchUsers({ key: this.key, pageSize: this.pageSize, page: this.page })
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(
+        (result: any) => {
+          console.log(result);
+          const { items, total_count } = result;
+          this.users = items;
+          this.count = total_count;
+          this.loading$.next(false);
+        },
+        (_) => {
+          this.toastService.showErrorToast({});
+          this.loading$.next(false);
+        }
+      );
+  }
+
+  handlePageChange(event): void {
+    this.page = event;
+    this.getUsers();
   }
 }

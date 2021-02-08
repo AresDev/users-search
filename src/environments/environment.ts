@@ -6,6 +6,7 @@ export const environment = {
   production: false,
   settings: {
     baseURL: 'https://api.github.com',
+    pageSize: 20,
   },
 };
 

@@ -1,0 +1,12 @@
+<div class="outer-container">
+  <fa-icon class="icon" [icon]="getCurrentIcon()"></fa-icon>
+  <div class="toast-text-container">
+    <ares-text *ngIf="title" weight="500" color="black">
+      {{ title }}
+    </ares-text>
+    <ares-text *ngIf="message" weight="400" color="grey" type="sm">
+      {{ message }}
+    </ares-text>
+  </div>
+  <fa-icon class="close" (click)="remove()" [icon]="['fas', 'times']"></fa-icon>
+</div>
