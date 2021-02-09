@@ -1,12 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Observable, Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
-import { environment } from 'src/environments/environment';
-import { ToastService } from '../core/toast.service';
+import { Store } from '@ngrx/store';
+import * as fromUser from 'src/app/core/store/user';
 import { BaseComponent } from '../shared/base/base.component';
-import { User } from '../shared/feature/user-item/user-item.component';
-import { SearchService } from './../core/search.service';
 
 export interface Params {
   key: string;
@@ -24,25 +20,14 @@ export class SearchComponent extends BaseComponent implements OnInit {
     key: this.fb.control(null, [Validators.required]),
   });
 
-  users: User[];
-  key = '';
-  page = 1;
-  count = 0;
-  public pageSize = environment.settings.pageSize;
-  public loading$ = new Subject<boolean>();
-
-  constructor(
-    private fb: FormBuilder,
-    private searchService: SearchService,
-    private toastService: ToastService
-  ) {
+  constructor(private fb: FormBuilder, private store: Store) {
     super();
   }
 
   ngOnInit(): void {}
 
   search(): void {
-    this.page = 1;
+    // this.page = 1;
     this.form.markAllAsTouched();
     this.form.markAsDirty();
 
@@ -53,32 +38,8 @@ export class SearchComponent extends BaseComponent implements OnInit {
 
     if (this.form.valid) {
       const values = this.form.value;
-      this.key = values.key;
-      this.getUsers();
+      // dispatch search users(key)
+      this.store.dispatch(fromUser.loadUsers({ key: values.key }));
     }
-  }
-
-  getUsers(key?: string): void {
-    this.loading$.next(true);
-    this.searchService
-      .searchUsers({ key: this.key, pageSize: this.pageSize, page: this.page })
-      .pipe(takeUntil(this.destroy$))
-      .subscribe(
-        (result: any) => {
-          const { items, total_count } = result;
-          this.users = items;
-          this.count = total_count;
-          this.loading$.next(false);
-        },
-        (_) => {
-          this.toastService.showErrorToast({});
-          this.loading$.next(false);
-        }
-      );
-  }
-
-  handlePageChange(event): void {
-    this.page = event;
-    this.getUsers();
   }
 }

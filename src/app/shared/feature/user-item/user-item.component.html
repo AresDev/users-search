@@ -1,4 +1,22 @@
-<div>
-  <a [href]="user.html_url">{{ user.login }}</a>
+<div class="item_container">
+  <!-- <a [href]="user.html_url">{{ user.login }}</a> -->
   <img class="profile" [src]="user.avatar_url" [alt]="user.login" />
+  <div class="info_container">
+    <span>{{ user.detail?.login }}</span>
+    <span>{{ user.detail?.name }}</span>
+    <span>{{ user.detail?.bio }}</span>
+  </div>
+
+  <!-- <div>
+    {{ user.detail?.following }}
+  </div>
+  <div>
+    {{ user.detail?.followers }}
+  </div>
+  <div>
+    {{ user.detail?.blog }}
+  </div>
+  <div>
+    {{ user.detail?.twitter_username }}
+  </div> -->
 </div>

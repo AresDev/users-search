@@ -20,6 +20,7 @@ export interface User {
   subscriptions_url: string;
   type: string;
   url: string;
+  detail: any;
 }
 @Component({
   selector: 'ares-user-item',

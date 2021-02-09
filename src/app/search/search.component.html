@@ -7,27 +7,3 @@
   <button type="submit" hidden #btn></button>
 </form>
 <button (click)="btn.click()">Search</button>
-<ng-container *ngIf="loading$ | async; else data">
-  <ares-loader></ares-loader>
-</ng-container>
-<ng-template #data>
-  <div>
-    <p *ngIf="count">Total: {{ count }}</p>
-    <ul>
-      <li
-        *ngFor="
-          let user of users
-            | paginate
-              : { itemsPerPage: pageSize, currentPage: page, totalItems: count }
-        "
-      >
-        <ares-user-item [user]="user"></ares-user-item>
-      </li>
-    </ul>
-
-    <pagination-controls
-      *ngIf="users"
-      (pageChange)="handlePageChange($event)"
-    ></pagination-controls>
-  </div>
-</ng-template>

@@ -12,10 +12,10 @@ import { User } from '../shared/feature/user-item/user-item.component';
 export class SearchService {
   constructor(private http: HttpClient) {}
 
-  searchUsers(params: Params): Observable<any> {
+  searchUsers(key: string, page: number): Observable<any> {
     return this.http
       .get(
-        `${environment.settings.baseURL}/search/users?q=${params.key}&per_page=${params.pageSize}&page=${params.page}`
+        `${environment.settings.baseURL}/search/users?q=${key}&per_page=${environment.settings.pageSize}&page=${page}`
       )
       .pipe(
         concatMap((result: any) => {
