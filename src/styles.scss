@@ -11,6 +11,18 @@
 
 @import "~@syncfusion/ej2-angular-inputs/styles/material.css";
 
+html,
+body {
+  @extend %poppins-regular;
+  min-width: $breakpoint__xs__px;
+  overflow: hidden;
+  height: 100vh;
+  font-size: 16px;
+  @include bp-until($breakpoint__sm) {
+    font-size: 14px !important;
+  }
+}
+
 abs-input.ng-invalid.ng-touched.ng-dirty {
   div.abs-input-wrapper.e-float-input,
   span.abs-input-wrapper {
