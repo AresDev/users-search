@@ -1,12 +1,17 @@
-<div class="ares-profile">
-  <nav class="ares-left-side">
+<div class="ares-container">
+  <nav class="ares-header">
     <!-- LOGO -->
     <div class="ares-logo">
-      <img src="assets/images/logo-small.svg" draggable="false" />
+      <fa-icon class="fa-2x" [icon]="['fab', 'github']"></fa-icon>
     </div>
+    <h1>Ares Finder</h1>
+
+    <ares-search></ares-search>
   </nav>
   <div class="ares-left-navbar">
-    <nav class="ares-left-navbar"></nav>
+    <nav class="ares-left-navbar">
+      <ares-users-list></ares-users-list>
+    </nav>
     <main class="content">
       <router-outlet></router-outlet>
     </main>

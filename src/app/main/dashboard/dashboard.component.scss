@@ -1,29 +1,35 @@
 @import "vars";
 
-.ares-profile {
+.ares-container {
   position: relative;
   overflow: hidden;
   background: $color__profile__menu__bg;
   height: 100%;
-  padding-left: $left__navbar--width;
+  padding-top: 60px;
 
-  nav.ares-left-side {
-    width: $left__navbar--width;
+  nav.ares-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
     background: $color__white;
     position: absolute;
     z-index: 200;
     top: 0;
     bottom: 0;
     left: 0;
-    border-right: 1px solid $color__border;
+    width: 100%;
+    border: 1px solid $color__border;
 
     div.ares-logo {
-      padding: $unit / 2;
-      margin-bottom: $unit * 1.5;
-      img {
+      padding-left: $unit / 2;
+      fa-icon {
         display: block;
-        width: 100%;
       }
+    }
+
+    ares-search {
+      justify-self: flex-start;
     }
   }
 
@@ -45,6 +51,7 @@
     width: $left__navbar-menu--width;
     background: $color__profile__menu__bg;
     height: 100%;
+    overflow: auto;
     border-right: 1px solid $color__border;
   }
 

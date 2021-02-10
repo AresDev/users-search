@@ -5,12 +5,27 @@ export const selectUserState = createFeatureSelector<fromUser.State>(
   fromUser.userFeatureKey
 );
 
+export const selectSearchKey = createSelector(
+  selectUserState,
+  (state) => state.key
+);
+
 export const selectLoading = createSelector(
   selectUserState,
   (state) => state.loading
 );
 
-export const selectPage = createSelector(
+export const selectUsers = createSelector(
+  selectUserState,
+  (state) => state.users
+);
+
+export const selectCurrentPage = createSelector(
   selectUserState,
   (state) => state.currentPage
+);
+
+export const selectTotalUsers = createSelector(
+  selectUserState,
+  (state) => state.totalUsers
 );

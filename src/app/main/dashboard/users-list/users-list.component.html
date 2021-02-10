@@ -1,0 +1,28 @@
+<ng-container *ngIf="loading$ | async; else data">
+  <ares-loader></ares-loader>
+</ng-container>
+<ng-template #data>
+  <div>
+    <pagination-controls
+      *ngIf="(totalUsers$ | async) > 0"
+      (pageChange)="handlePageChange($event)"
+    ></pagination-controls>
+    <p *ngIf="count">Total: totalUsers$ | async</p>
+    <ul>
+      <li
+        *ngFor="
+          let user of users$
+            | async
+            | paginate
+              : {
+                  itemsPerPage: pageSize,
+                  currentPage: currentPage$ | async,
+                  totalItems: totalUsers$ | async
+                }
+        "
+      >
+        <ares-user-item [user]="user"></ares-user-item>
+      </li>
+    </ul>
+  </div>
+</ng-template>

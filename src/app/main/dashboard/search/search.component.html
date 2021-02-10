@@ -1,0 +1,15 @@
+<div class="search-container">
+  <form [formGroup]="form" (ngSubmit)="search()">
+    <ares-input
+      type="text"
+      placeholder="Search GitHub"
+      formControlName="key"
+    ></ares-input>
+    <button type="submit" hidden #btn></button>
+  </form>
+  <fa-icon
+    class="close"
+    (click)="btn.click()"
+    [icon]="['fas', 'search']"
+  ></fa-icon>
+</div>

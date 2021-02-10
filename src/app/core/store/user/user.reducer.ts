@@ -6,6 +6,7 @@ export const userFeatureKey = 'user';
 
 export interface State {
   key: string;
+  totalUsers: number;
   currentPage: number;
   users: User[];
   loading: boolean;
@@ -14,6 +15,7 @@ export interface State {
 
 export const initialState: State = {
   key: null,
+  totalUsers: null,
   currentPage: 1,
   users: [],
   loading: false,
@@ -50,6 +52,7 @@ export const reducer = createReducer(
       return {
         ...state,
         users: action.result.items,
+        totalUsers: action.result.total_count,
         loading: false,
       };
     }

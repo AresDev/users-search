@@ -75,7 +75,7 @@ $color__input__text: $color__navy;
 $color__input__label: #a8a8b7;
 $color__input__border: #e3e3e8;
 $color__input__border--focused: $color__navy;
-$color__input__border--invalid: $color__red;
+$color__input__border--invalid: $color__navy;
 
 // checkbox colors
 $color__checkbox__check--checked: $color__red;
@@ -150,7 +150,7 @@ $xs__text__font--size: get-rems(10px);
 $left__navbar--width: get-rems(64px);
 $top__navbar--height: get-rems(60px);
 
-$left__navbar-menu--width: get-rems(309px);
+$left__navbar-menu--width: get-rems(600px);
 
 /* @breakpoints
 ---------------------------------------------------------
