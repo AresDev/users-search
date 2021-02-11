@@ -23,6 +23,7 @@ export class UserEffects {
       concatMap((action) => [
         UserActions.changePage({ page: 1 }),
         UserActions.selectUser({ selectedUser: null }),
+        UserActions.selectUserDetail({ selectedUserDetail: null }),
         UserActions.loadUsers({ key: action.key }),
       ])
     );
