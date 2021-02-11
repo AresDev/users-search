@@ -1,0 +1,16 @@
+ul {
+  list-style-type: none;
+}
+
+li {
+  border-bottom: 1px solid grey;
+}
+
+.caption {
+  padding: 10px;
+}
+
+.paginator-container {
+  display: flex;
+  justify-content: center;
+}

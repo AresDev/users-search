@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { concatMap, map, switchMap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -13,26 +14,16 @@ export class SearchService {
     return this.http.get(
       `${environment.settings.baseURL}/search/users?q=${key}&per_page=${environment.settings.pageSize}&page=${page}`
     );
-    // .pipe(
-    //   concatMap((result: any) => {
-    //     return from(result.items).pipe(
-    //       shareReplay({ bufferSize: 1, refCount: true }),
-    //       concatMap((user: User) =>
-    //         this.http.get(user.url).pipe(
-    //           shareReplay({ bufferSize: 1, refCount: true }),
-    //           map((detail) => ({ ...user, detail } as User))
-    //         )
-    //       ),
-    //       reduce((newUsers, currentUser) => {
-    //         newUsers.push(currentUser);
-    //         return newUsers;
-    //       }, []),
-    //       switchMap((items) => {
-    //         result.items = items;
-    //         return of(result);
-    //       })
-    //     );
-    //   })
-    // );
+  }
+
+  getUserDetail(url: string): Observable<any> {
+    return this.http.get(url).pipe(
+      concatMap((userDetail: any) =>
+        this.http.get(`${userDetail.url}/starred`).pipe(
+          map((stared: any[]) => stared.length),
+          map((stars) => ({ ...userDetail, stars }))
+        )
+      )
+    );
   }
 }

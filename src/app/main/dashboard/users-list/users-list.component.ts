@@ -60,4 +60,9 @@ export class UsersListComponent extends BaseComponent implements OnInit {
     // dispatch update page
     this.store.dispatch(fromUsers.changePage({ page: event }));
   }
+
+  selectUser(user: User): void {
+    // dispatch select user
+    this.store.dispatch(fromUsers.selectUser({ selectedUser: user }));
+  }
 }

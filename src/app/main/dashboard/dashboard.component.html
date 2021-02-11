@@ -9,9 +9,17 @@
     <ares-search></ares-search>
   </nav>
   <div class="ares-left-navbar">
-    <nav class="ares-left-navbar"></nav>
+    <nav class="ares-left-navbar">
+      <ares-user-detail
+        *ngIf="(totalUsers$ | async) > 0"
+        [userDetail]="userDetail$ | async"
+      ></ares-user-detail>
+    </nav>
     <main class="content">
       <ares-users-list></ares-users-list>
     </main>
   </div>
+  <nav class="ares-footer">
+    <span>Made with <span class="heart">❤</span> in 🇨🇴 Colombia</span>
+  </nav>
 </div>

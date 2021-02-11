@@ -59,5 +59,31 @@
     position: relative;
     width: 100%;
     overflow: auto;
+    padding: 15px;
+  }
+
+  nav.ares-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 60px;
+    background: $color__white;
+    position: absolute;
+    z-index: 200;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    border: 1px solid $color__border;
+
+    div.ares-logo {
+      padding-left: $unit / 2;
+      fa-icon {
+        display: block;
+      }
+    }
+  }
+
+  .heart {
+    color: #e25555;
   }
 }

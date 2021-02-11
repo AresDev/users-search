@@ -2,19 +2,26 @@
   <ares-loader></ares-loader>
 </ng-container>
 <ng-template #data>
-  <div *ngIf="(totalUsers$ | async) === 0">No users were found</div>
-  <div *ngIf="(totalUsers$ | async) > 0">{{ totalUsers$ | async }} users</div>
+  <div class="caption" *ngIf="(totalUsers$ | async) === 0">
+    No users were found
+  </div>
+  <div class="caption" *ngIf="(totalUsers$ | async) > 0">
+    <h3>{{ totalUsers$ | async }} users</h3>
+  </div>
   <div>
-    <pagination-controls
-      [directionLinks]="true"
-      [autoHide]="true"
-      [responsive]="true"
-      *ngIf="(totalUsers$ | async) > 0"
-      (pageChange)="handlePageChange($event)"
-    ></pagination-controls>
+    <div class="paginator-container">
+      <pagination-controls
+        [directionLinks]="true"
+        [autoHide]="true"
+        [responsive]="true"
+        *ngIf="(totalUsers$ | async) > 0"
+        (pageChange)="handlePageChange($event)"
+      ></pagination-controls>
+    </div>
     <p *ngIf="count">Total: totalUsers$ | async</p>
     <ul>
       <li
+        (click)="selectUser(user)"
         *ngFor="
           let user of users$
             | async

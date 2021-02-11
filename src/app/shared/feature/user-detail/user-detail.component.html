@@ -1,0 +1,31 @@
+<div class="user-detail-container" *ngIf="userDetail; else emptyDetail">
+  <img class="profile" [src]="userDetail.avatar_url" [alt]="userDetail.login" />
+  <div class="info-container">
+    <h1>{{ userDetail?.name }}</h1>
+    <h4 class="light">{{ userDetail?.login }}</h4>
+
+    <p>{{ userDetail?.bio }}</p>
+    <div class="people">
+      <fa-icon [icon]="['fas', 'users']"></fa-icon>
+      {{ userDetail?.followers }} followers ·
+      {{ userDetail?.following }} following ·
+      <fa-icon [icon]="['fas', 'star']"></fa-icon>
+      {{ userDetail?.stars }}
+    </div>
+    <div *ngIf="userDetail?.email" class="people">
+      <fa-icon [icon]="['fas', 'envelope']"></fa-icon>
+      {{ userDetail?.email }}
+    </div>
+    <div *ngIf="userDetail?.twitter_username" class="people">
+      <fa-icon [icon]="['fas', 'dove']"></fa-icon>
+      <a [href]="'https://twitter.com/' + userDetail?.twitter_username">
+        @{{ userDetail?.twitter_username }}
+      </a>
+    </div>
+  </div>
+</div>
+<ng-template #emptyDetail>
+  <div class="empty-detail-container">
+    <p>Please select a user to see its details</p>
+  </div>
+</ng-template>

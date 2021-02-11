@@ -11,6 +11,8 @@ export interface State {
   users: User[];
   loading: boolean;
   error: string;
+  selectedUser: User;
+  selectedUserDetail: any;
 }
 
 export const initialState: State = {
@@ -20,31 +22,42 @@ export const initialState: State = {
   users: [],
   loading: false,
   error: null,
+  selectedUser: null,
+  selectedUserDetail: null,
 };
 
 export const reducer = createReducer(
   initialState,
-  on(UserActions.search, (state, action) => {
-    return {
-      ...state,
-      key: action.key,
-    };
-  }),
+  on(
+    UserActions.search,
+    (state, action): State => {
+      return {
+        ...state,
+        key: action.key,
+      };
+    }
+  ),
 
-  on(UserActions.changePage, (state, action) => {
-    return {
-      ...state,
-      currentPage: action.page,
-    };
-  }),
+  on(
+    UserActions.changePage,
+    (state, action): State => {
+      return {
+        ...state,
+        currentPage: action.page,
+      };
+    }
+  ),
 
-  on(UserActions.loadUsers, (state) => {
-    return {
-      ...state,
-      loading: true,
-      error: null,
-    };
-  }),
+  on(
+    UserActions.loadUsers,
+    (state): State => {
+      return {
+        ...state,
+        loading: true,
+        error: null,
+      };
+    }
+  ),
 
   on(
     UserActions.loadUsersSuccess,
@@ -65,6 +78,26 @@ export const reducer = createReducer(
         ...state,
         loading: false,
         error: action.error,
+      };
+    }
+  ),
+
+  on(
+    UserActions.selectUser,
+    (state, action): State => {
+      return {
+        ...state,
+        selectedUser: action.selectedUser,
+      };
+    }
+  ),
+
+  on(
+    UserActions.selectUserDetail,
+    (state, action): State => {
+      return {
+        ...state,
+        selectedUserDetail: action.selectedUserDetail,
       };
     }
   )

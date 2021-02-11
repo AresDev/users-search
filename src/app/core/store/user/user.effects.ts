@@ -22,8 +22,29 @@ export class UserEffects {
       ofType(UserActions.search),
       concatMap((action) => [
         UserActions.changePage({ page: 1 }),
+        UserActions.selectUser({ selectedUser: null }),
         UserActions.loadUsers({ key: action.key }),
       ])
+    );
+  });
+
+  selectUser$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(UserActions.selectUser),
+      concatMap((action) =>
+        this.searchService.getUserDetail(action.selectedUser.url).pipe(
+          map((result) =>
+            UserActions.selectUserDetail({ selectedUserDetail: result })
+          ),
+          catchError((result: any) =>
+            of(
+              UserActions.loadUsersFailure({
+                error: result.error,
+              })
+            )
+          )
+        )
+      )
     );
   });
 

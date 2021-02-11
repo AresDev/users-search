@@ -29,3 +29,13 @@ export const selectTotalUsers = createSelector(
   selectUserState,
   (state) => state.totalUsers
 );
+
+export const selectCurrentSelectedUser = createSelector(
+  selectUserState,
+  (state) => state.selectedUser
+);
+
+export const selectSelectedUserDetail = createSelector(
+  selectUserState,
+  (state) => state.selectedUserDetail
+);
