@@ -20,7 +20,10 @@ export class UserEffects {
   search$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(UserActions.search),
-      map((action) => UserActions.loadUsers({ key: action.key }))
+      concatMap((action) => [
+        UserActions.changePage({ page: 1 }),
+        UserActions.loadUsers({ key: action.key }),
+      ])
     );
   });
 
@@ -48,7 +51,6 @@ export class UserEffects {
       ),
       concatMap(([action, currentPage]) => {
         return this.searchService.searchUsers(action.key, currentPage).pipe(
-          first((result) => !!result),
           map((result) => UserActions.loadUsersSuccess({ result })),
           catchError((result: any) =>
             of(
@@ -62,14 +64,17 @@ export class UserEffects {
     );
   });
 
-  loadUsersFailure$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(UserActions.loadUsersFailure),
-      tap((action) => {
-        this.toastService.showErrorToast({ message: action.error.message });
-      })
-    );
-  });
+  loadUsersFailure$ = createEffect(
+    () => {
+      return this.actions$.pipe(
+        ofType(UserActions.loadUsersFailure),
+        tap((action) => {
+          this.toastService.showErrorToast({ message: action.error.message });
+        })
+      );
+    },
+    { dispatch: false }
+  );
 
   constructor(
     private actions$: Actions,

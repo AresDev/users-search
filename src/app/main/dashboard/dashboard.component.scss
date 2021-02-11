@@ -51,12 +51,13 @@
     width: $left__navbar-menu--width;
     background: $color__profile__menu__bg;
     height: 100%;
-    overflow: auto;
+
     border-right: 1px solid $color__border;
   }
 
   main.content {
     position: relative;
     width: 100%;
+    overflow: auto;
   }
 }

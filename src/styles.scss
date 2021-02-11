@@ -11,6 +11,45 @@
 
 @import "~@syncfusion/ej2-angular-inputs/styles/material.css";
 
+// toast styles
+@import "~ngx-toastr/toastr";
+
+.abs-toast {
+  display: flex;
+
+  &.ngx-toastr {
+    padding: 0;
+  }
+
+  &.toast-success {
+    .icon {
+      color: $color__success__fg;
+      border-color: $color__success__fg;
+    }
+  }
+
+  &.toast-info {
+    .icon {
+      color: $color__info__fg;
+      border-color: $color__info__fg;
+    }
+  }
+
+  &.toast-error {
+    .icon {
+      color: $color__error__fg;
+      border-color: $color__error__fg;
+    }
+  }
+
+  &.toast-warning {
+    .icon {
+      color: $color__warning__fg;
+      border-color: $color__warning__fg;
+    }
+  }
+}
+
 html,
 body {
   @extend %poppins-regular;

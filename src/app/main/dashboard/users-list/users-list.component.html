@@ -2,8 +2,13 @@
   <ares-loader></ares-loader>
 </ng-container>
 <ng-template #data>
+  <div *ngIf="(totalUsers$ | async) === 0">No users were found</div>
+  <div *ngIf="(totalUsers$ | async) > 0">{{ totalUsers$ | async }} users</div>
   <div>
     <pagination-controls
+      [directionLinks]="true"
+      [autoHide]="true"
+      [responsive]="true"
       *ngIf="(totalUsers$ | async) > 0"
       (pageChange)="handlePageChange($event)"
     ></pagination-controls>

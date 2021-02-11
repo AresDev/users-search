@@ -40,7 +40,7 @@ export class SearchComponent extends BaseComponent implements OnInit {
       // this.store.dispatch(fromUser.changePage({ page: 1 }));
       const values = this.form.value;
       // dispatch search users(key)
-      this.store.dispatch(fromUser.loadUsers({ key: values.key }));
+      this.store.dispatch(fromUser.search({ key: values.key }));
     }
   }
 }
