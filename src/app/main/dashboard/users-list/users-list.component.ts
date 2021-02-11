@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Observable, Subject } from 'rxjs';
-import { shareReplay } from 'rxjs/operators';
+import { shareReplay, map } from 'rxjs/operators';
 import { SearchService } from 'src/app/core/search.service';
 import { ToastService } from 'src/app/core/toast.service';
 import { environment } from 'src/environments/environment';
@@ -17,6 +17,7 @@ import { User } from '../../../shared/feature/user-item/user-item.component';
 export class UsersListComponent extends BaseComponent implements OnInit {
   users$: Observable<User[]>;
   totalUsers$: Observable<number>;
+  totalUsersMax$: Observable<number>;
   currentPage$: Observable<number>;
   loading$: Observable<boolean>;
 
@@ -47,6 +48,12 @@ export class UsersListComponent extends BaseComponent implements OnInit {
 
     this.totalUsers$ = this.store.pipe(
       select(fromUsers.selectTotalUsers),
+      shareReplay(1)
+    );
+
+    this.totalUsersMax$ = this.store.pipe(
+      select(fromUsers.selectTotalUsers),
+      map((total) => (total > 1000 ? 1000 : total)),
       shareReplay(1)
     );
 
